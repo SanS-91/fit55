@@ -28,3 +28,182 @@
 .resttimer .micro{font-size:9px}.resttimer .actions{flex-wrap:nowrap}.resttimer .actions button{white-space:nowrap}
 @media(max-width:900px){.resttimer{right:12px;bottom:calc(80px + env(safe-area-inset-bottom))}}
 @media(max-width:390px){.resttimer{left:9px;right:9px;padding:10px}.resttimer b{font-size:24px}.resttimer .btn{padding:7px;font-size:9px}}
+
+
+/* FIT55 4.2 · Readability & typography accessibility
+   Default text is comfortably larger. Users can pick Standard / Easy Read / Extra Large.
+   Main information text uses dark, opaque contrast on pastel backgrounds. */
+:root{
+  --fit-delta:2px;
+  --muted:#625968;
+  --ink:#332c3a;
+  --line:#e7dce3;
+  --rose-dark:#9f4566;
+}
+:root[data-fit-text="standard"]{--fit-delta:0px}
+:root[data-fit-text="comfortable"]{--fit-delta:2px}
+:root[data-fit-text="extra"]{--fit-delta:4px}
+body{font-size:calc(13px + var(--fit-delta));line-height:1.72;letter-spacing:.005em;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+h1,h2,h3,h4,b,strong{color:var(--ink)}
+h1,h2{line-height:1.36}
+h1{font-size:calc(30px + var(--fit-delta));font-weight:700}
+h2{font-size:calc(23px + var(--fit-delta));font-weight:700}
+h3{font-size:calc(16px + var(--fit-delta));font-weight:800}
+.pageheader h2{font-size:calc(24px + var(--fit-delta));color:#372d40}
+.pageheader p,.quiet,.notice,.card p,.hero p,.timelineitem p,.exrow .meta,.exercise-detail p,.exercise-detail li,.sidequote p{
+  font-size:calc(12px + var(--fit-delta));
+  line-height:1.8;
+  color:#554d5a;
+  opacity:1;
+}
+.meta,.metric-note,.chart text,.historyrow span,.caloriegroup p{
+  font-size:calc(11px + var(--fit-delta));
+  color:#615765;
+  opacity:1;
+}
+.micro,.crumb,.sidecaption,.statlabel,.card .micro,.tile .micro,.timelineitem .time,.guide-line b{
+  font-size:calc(10px + var(--fit-delta));
+  font-weight:800;
+  color:#8d3e63;
+  letter-spacing:.065em;
+}
+.pagetitle{font-size:calc(23px + var(--fit-delta));color:#362d3c;font-weight:700}
+.paneltitle h3{font:800 calc(18px + var(--fit-delta))/1.4 'DM Sans',Arial,sans-serif;letter-spacing:-.025em;color:#382f40}
+.tile h3,.exhead h3{font-family:'DM Sans',Arial,sans-serif;font-weight:800;letter-spacing:0;color:#332d3a}
+.exhead h3{font-size:calc(14px + var(--fit-delta))}
+.statnum,.measuremini b{color:#402d41;font-weight:700}
+.statlabel{letter-spacing:0}
+.statnum small{font-size:calc(12px + var(--fit-delta));color:#625565}
+.btn,.subtab,.daycard b,.weekbtn,.phasecard b,.navbtn{
+  font-size:calc(11px + var(--fit-delta));
+  font-weight:800;
+}
+.btn.small,.pill,.datechip,.checklist .item,.historyrow,.foodpreview,.caloriegroup p{
+  font-size:calc(10px + var(--fit-delta));
+}
+.pill{color:#6c475c;font-weight:800;background:#fbf2f7;border-color:#e8d4df}
+.pill.rose{color:#944262;background:#fce9ef;border-color:#f0c9d9}
+.pill.lav{color:#69538e;background:#f2ebfa;border-color:#e4d8f0}
+.pill.mint{color:#246b50;background:#e5f4ea;border-color:#cde5da}
+.navbtn{color:#564758}
+.navbtn.active{color:#994365}
+.navbtn svg{color:inherit}
+.navbtn:hover{color:#994365}
+.sidequote p{color:#635465}
+.sidebar .brandname small{font-size:calc(9px + var(--fit-delta));color:#675b6b;letter-spacing:.08em}
+.sidecaption{color:#6e5164}
+.btn.primary{background:linear-gradient(120deg,#c9697c,#a94e76);color:white}
+.btn.primary:hover{filter:brightness(.97)}
+.btn:not(.primary){color:#63485c;border-color:#d8cad5}
+.btn:not(.primary):hover{background:#fff3f8;border-color:#bd89a3}
+.btn.green{color:#246b50!important;background:#e5f4ec!important;border-color:#b9dbc7!important}
+.hero{border-color:#ead5dc;background:linear-gradient(120deg,#fff1ec,#fff8f6 48%,#f4efff)}
+.hero h1{color:#4f3c4f;font-size:clamp(31px,3vw,46px);font-weight:700}
+.hero h1 em{color:#a74769;font-weight:700}
+.hero p{color:#514554}
+.stat{border-color:#e6dce2}
+.stat .statlabel{color:#625264}
+.pill.warn,.notice.amber,.guide-warning{color:#77511f}
+.notice{color:#5d4b5e}
+.notice.green{color:#24583f}
+.notice.red{color:#893d4d}
+.tile{border-color:#e5dae2}
+.card{border-color:#e6dce4}
+.formitem label,label{font-size:calc(11px + var(--fit-delta));font-weight:800;color:#56495d}
+.field,.setinput,textarea,select,input{
+  font-size:calc(13px + var(--fit-delta));
+  color:#302a35;
+  font-weight:600;
+}
+.field,.setinput{background:#fff;border-color:#d8cbd6;min-height:43px}
+.field::placeholder,.setinput::placeholder,input::placeholder{color:#796c79;opacity:1;font-weight:500}
+.field:focus,.setinput:focus{outline:3px solid #f0d0df;outline-offset:1px;border-color:#a9547d}
+.settable th,.table th{font-size:calc(10px + var(--fit-delta));font-weight:800;color:#5f5261}
+.settable td,.table td{font-size:calc(11px + var(--fit-delta));color:#4c4150}
+.settable .setinput{min-height:39px}
+.exrow,.exbody{color:#463b49}
+.exrow .tags{margin-top:9px}
+.quick-guide summary,.quick-guide .guide-content,.quick-guide .guide-line,.quick-guide .guide-warning,.quick-guide li{
+  font-size:calc(11px + var(--fit-delta));
+  line-height:1.78;
+  color:#534657;
+  opacity:1;
+}
+.quick-guide summary{font-weight:800;color:#994365}
+.quick-guide .guide-content{gap:10px}
+.quick-guide .guide-content b{color:#413047}
+.quick-guide .guide-line{background:#fff9fc;border-color:#eadbe4}
+.chart text{fill:#5e5464;opacity:1}
+.chart .gridline{stroke:#e9e0e7}
+.chart .actual{stroke:#bd527c;stroke-width:3}
+.chart .point{fill:#bd527c}
+.mobilebtn{font-size:calc(10px + var(--fit-delta));color:#66596a;font-weight:800}
+.mobilebtn.active{color:#944165}
+.daycard{color:#5d4b5f}
+.daycard small,.phasecard small,.weekbtn small,.measuremini small,.formitem small,.tile small{
+  font-size:calc(10px + var(--fit-delta));
+  color:#665d6b;
+  opacity:1;
+}
+.daycard.active small,.weekbtn.active small{color:white}
+.phasecard{color:#665368}
+.weekbtn{color:#665367}
+.measuremini span{font-size:calc(10px + var(--fit-delta));color:#6d5f70}
+.measuremini small{line-height:1.65}
+.timelineitem b{font-size:calc(12px + var(--fit-delta));color:#45384a}
+.timelineitem p{font-size:calc(11px + var(--fit-delta));color:#5b4f5d}
+.timelineitem .time{color:#994365}
+.footnote{font-size:calc(10px + var(--fit-delta));color:#625565}
+.historyrow b,.checklist b{font-size:calc(11px + var(--fit-delta))}
+.exnum{color:#924767}
+.resttimer .micro{font-size:calc(10px + var(--fit-delta))}
+.resttimer .meta{font-size:calc(11px + var(--fit-delta))}
+.resttimer .btn.small{font-size:calc(10px + var(--fit-delta))}
+button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,summary:focus-visible{
+  outline:3px solid #ad537d;
+  outline-offset:3px;
+}
+.type-control-container{position:relative;display:flex;align-items:center}
+.type-toggle{width:auto;min-width:46px;padding:0 9px;gap:3px;font-size:14px;font-weight:800;white-space:nowrap}
+.type-toggle .small-aa{font-size:11px;font-weight:700;opacity:.9}
+.type-panel{
+  position:absolute;right:0;top:calc(100% + 9px);z-index:110;
+  width:min(278px,calc(100vw - 28px));padding:13px;
+  border:1px solid #dacbd6;border-radius:15px;background:#fff;
+  box-shadow:0 15px 42px #5842552b;
+}
+.type-panel[hidden]{display:none!important}
+.type-panel-title{font-weight:800;font-size:15px;color:#493449;margin-bottom:4px}
+.type-panel-help{font-size:12px;color:#605462;line-height:1.6;margin:0 0 11px}
+.type-options{display:grid;gap:7px}
+.type-option{
+  display:flex;align-items:center;justify-content:space-between;gap:6px;width:100%;
+  border:1px solid #e8dce5;background:#fff;border-radius:10px;
+  padding:10px 12px;text-align:left;font-size:14px;color:#514254;font-weight:700
+}
+.type-option[data-size="standard"]{font-size:13px}
+.type-option[data-size="comfortable"]{font-size:15px}
+.type-option[data-size="extra"]{font-size:17px}
+.type-option[aria-pressed="true"]{background:#fff0f5;color:#8e3d62;border-color:#c384a2;box-shadow:inset 3px 0 #b35a7c}
+.type-option span:last-child{font-size:12px}
+@media(max-width:900px){
+  .mobilebtn{font-size:calc(10px + var(--fit-delta))}
+  .setinput,.field,select,textarea,input{font-size:max(16px, calc(13px + var(--fit-delta)))}
+}
+@media(max-width:680px){
+  .hero h1{font-size:clamp(30px,7vw,39px)}
+  .pageheader h2{font-size:calc(22px + var(--fit-delta))}
+  .card{padding:17px}
+  .hero{padding:25px}
+  .quick-guide summary{font-size:calc(12px + var(--fit-delta))}
+  .daycard small,.phasecard small,.weekbtn small{font-size:calc(10px + var(--fit-delta))}
+  .statnum{font-size:calc(25px + var(--fit-delta))}
+  .topactions{gap:7px}
+  .type-panel{right:-48px}
+}
+@media(max-width:380px){
+  .topbar{gap:7px}
+  .type-toggle{min-width:39px;padding:0 6px}
+  .pagetitle{font-size:calc(20px + var(--fit-delta))}
+  .topactions{gap:5px}
+}
