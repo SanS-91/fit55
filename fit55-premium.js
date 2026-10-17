@@ -132,7 +132,7 @@
   function syncGoal(){
     const current=Number((document.querySelector('#latest')?.textContent||'63.3').replace(',','.').match(/\d+(\.\d+)?/)?.[0]||63.3);
     const pct=Math.max(0,Math.min(100,(63.3-current)/8.3*100));
-    document.querySelector('#fit-goal-ring')?.style.setProperty('--goal-pct',pct.toFixed(1));
+    document.querySelector('#fit-goal-ring')?.style.setProperty('--goal-angle',pct.toFixed(1)+'%');
     const remaining=Math.max(0,current-55);
     const p=hero.querySelector('.fit-hero-copy p');
     if(p)p.textContent='Từ 63.3 kg đến 55 kg · hiện còn khoảng '+remaining.toFixed(1)+' kg theo lần cân mới nhất. Tập đều, ăn đủ đạm và ưu tiên hồi phục.';
