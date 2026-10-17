@@ -6,3 +6,17 @@
 @media(max-width:680px){.topbar{padding:15px 0}.datechip{display:none}.pagetitle{font-size:21px}.hero{grid-template-columns:1fr;padding:24px;border-radius:19px;min-height:auto}.hero-circle{display:none}.hero h1{font-size:31px}.g2,.g3,.trackingcols{grid-template-columns:1fr}.g4,.metricgrid{grid-template-columns:repeat(2,minmax(0,1fr))}.card{border-radius:16px;padding:16px}.pageheader{align-items:flex-start;flex-direction:column;margin-bottom:14px}.pageheader h2{font-size:22px}.phasegrid{grid-template-columns:repeat(2,minmax(0,1fr))}.daygrid{grid-template-columns:repeat(2,minmax(0,1fr))}.formgrid{grid-template-columns:repeat(2,minmax(0,1fr))}.exrow{grid-template-columns:31px minmax(0,1fr);padding:12px;gap:9px}.exnum{width:30px;height:30px}.exhead{display:block}.exbody{grid-column:1 / -1}.exercise-detail .detailgrid{grid-template-columns:1fr}.historyrow{grid-template-columns:88px 1fr}.historyrow>.btn{grid-column:2;justify-self:start}.caloriegroup{grid-template-columns:repeat(3,minmax(0,1fr))}.caloriegroup .tile{padding:10px 6px}.caloriegroup strong{font-size:18px}.barline{grid-template-columns:80px 1fr 23px}.modalhead,.modalfoot{padding:13px 16px}.modalbody{padding:16px}.tile{padding:13px}}
 @media(max-width:400px){.workspace{padding:0 13px 92px}.formgrid,.inlineeditable{grid-template-columns:1fr}.g4,.metricgrid{gap:8px}.stat{padding:13px}.statnum{font-size:23px}.hero h1{font-size:29px}.daygrid{gap:7px}.daycard{padding:12px 10px}.barline{grid-template-columns:70px 1fr 20px}}
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;transition:none!important}}
+
+/* Inline technique guide in workout sessions */
+.quick-guide{margin-top:12px;border-top:1px solid #f1e7ec;padding-top:10px;background:linear-gradient(180deg,#fff,#fffcfe)}
+.quick-guide summary{color:#a76786;font-size:11px;font-weight:800;cursor:pointer;list-style:none;display:flex;align-items:center;gap:7px;min-height:31px}
+.quick-guide summary::-webkit-details-marker{display:none}
+.quick-guide summary:before{content:"＋";display:grid;place-items:center;width:24px;height:24px;background:#f9edf3;color:#b47290;border-radius:8px;font-size:16px}
+.quick-guide[open] summary:before{content:"−"}
+.quick-guide .guide-content{display:grid;gap:9px;padding:12px 0 5px;font-size:11px;color:#756979;line-height:1.75}
+.quick-guide ol{margin:0;padding:2px 0 2px 22px}
+.quick-guide li{margin-bottom:5px}
+.quick-guide .guide-line{background:#fcf8fb;border:1px solid #f3eaf0;padding:9px 11px;border-radius:9px}
+.quick-guide .guide-warning{background:#fff7ec;color:#8b6d40;padding:9px 11px;border-radius:9px}
+.quick-guide .guide-content b{color:#645366}
+@media(max-width:680px){.quick-guide{margin-top:11px}.quick-guide .guide-content{padding-bottom:0}.quick-guide summary{font-size:11px}}
