@@ -87,6 +87,7 @@ function workoutOf(week,dayIndex){
  })};
 }
 const measurementFields=[
+{key:"underbust",label:"Chân ngực",unit:"cm",old:null,note:"Vòng dưới chân ngực; đo sát dưới bầu ngực, thở bình thường và giữ thước ngang."},
 {key:"waist",label:"Eo nhỏ nhất",unit:"cm",old:67,note:"Số đo tham khảo cũ, không phải số đo cùng ngày InBody 16/10."},
 {key:"navel",label:"Bụng ngang rốn",unit:"cm",old:72,note:"Đo thả lỏng sau thở ra nhẹ."},
 {key:"hip",label:"Mông",unit:"cm",old:96,note:"Đo vòng lớn nhất; mục tiêu ưu tiên giữ dáng."},
