@@ -276,3 +276,10 @@ button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,su
   .compact-done{width:30px;height:32px}
   .compact-set-row .compact-field{font-size:12px}
 }
+
+/* FIT55 4.4: compact logging respects the user's Aa font-size preference */
+.setlog-title{font-size:calc(13px + var(--fit-delta))}
+.setlog-status{font-size:calc(11px + var(--fit-delta))}
+.set-index{font-size:calc(12px + var(--fit-delta))}
+.compact-set-row .compact-field{font-size:max(15px,calc(13px + var(--fit-delta)))}
+@media(max-width:900px){.compact-set-row .compact-field{font-size:max(16px,calc(13px + var(--fit-delta)))}}
