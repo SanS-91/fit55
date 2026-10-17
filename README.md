@@ -37,6 +37,15 @@ Giao diện hiển thị chính xác biến thể và số set của từng tu�
 
 Đau cơ khi ấn vào nhẹ có thể gặp khi mới tập lại. Nếu đau khi vận động rõ, giảm tải; đau dữ dội, sưng, yếu bất thường hoặc nước tiểu sẫm màu cần dừng tập và đánh giá y tế.
 
+## Nhập bộ số đo riêng tư (v4.3)
+
+Vào **Mục tiêu & số đo → ↑ Nhập bộ số đo JSON** và chọn file có cấu trúc `FIT55_MEASUREMENT` (version 1). Ứng dụng kiểm tra dữ liệu rồi hỏi xác nhận trước khi nhập.
+
+- Cho phép ghi các trường: cân nặng, ngực, **chân ngực**, eo, bụng ngang rốn, mông, đùi, bắp chân, bắp tay và các chỉ số InBody nếu có.
+- Khi ngày đo đã tồn tại, chỉ hợp nhất những trường có trong file; **không xóa nhật ký tập, bữa ăn, chỉ số khác cùng ngày hoặc mốc InBody gốc**.
+- File chứa số đo cá nhân không cần tải lên repository công khai. Chỉ chọn file tại trình duyệt thiết bị bạn đang sử dụng.
+- Cân nặng được hiển thị đến hai chữ số thập phân để không làm tròn số khi nhập.
+
 ## Dữ liệu & bảo mật
 
 - Website chạy hoàn toàn dạng tĩnh trên GitHub Pages; nhật ký cá nhân chỉ lưu trên **localStorage của thiết bị**, không upload lên repository công khai.
