@@ -35,56 +35,95 @@ const E={
 "side-plank":{name:"Side Plank",vn:"Plank nghiêng",primary:"Core bên",secondary:["Mông bên","Vai"],impact:[["Core bên",5],["Mông bên",2]],kind:"Chống nghiêng",why:"Ổn định thân và hông; không trực tiếp làm tan mỡ eo.",setup:"Nằm nghiêng, khuỷu dưới vai, gối có thể gập để giảm độ khó.",steps:["Nâng hông lên, giữ thân thành đường thẳng.","Giữ 20–30 giây mỗi bên, thở đều.","Hạ xuống có kiểm soát."],breath:"Hít thở đều qua cả thời gian giữ.",cues:"Nếu cổ/vai khó chịu hãy dùng biến thể gối gập.",errors:"Vai đổ, hông xoay, nín thở.",alternatives:["pallof","deadbug"],range:"20–30 giây/bên",sets:2,rest:55,load:"Trọng lượng cơ thể.",equipment:"Thảm"},
 "pallof":{name:"Pallof Press",vn:"Đẩy cáp chống xoay",primary:"Core",secondary:["Cơ ổn định hông"],impact:[["Core",5]],kind:"Chống xoay",why:"Rèn ổn định core theo hướng chống xoay, hỗ trợ kiểm soát thân.",setup:"Đứng vuông góc dây cáp, cầm tay trước ngực, chân rộng bằng hông.",steps:["Siết bụng nhẹ, giữ hông nhìn thẳng.","Đẩy tay ra trước mà không xoay thân về phía máy.","Kéo tay về, đổi chiều."],breath:"Thở ra khi đẩy tay ra; hít vào lúc kéo về.",cues:"Cáp nhẹ, thân không xoay quan trọng hơn mức tạ.",errors:"Xoay theo cáp, ưỡn lưng, vai gồng.",alternatives:["deadbug","side-plank"],range:"10–12/bên",sets:2,rest:60,load:"Cáp nhẹ.",equipment:"Cable"}
 };
+/* FIT55 · Stable glute / pull / glute / push program, published 2026-10.
+   Main exercises stay stable; RIR, sets, reps and weight change by performance.
+   Six exercises are shown on every training day; the last is brief/optional for 45-minute sessions. */
+Object.assign(E,{
+"single-cable-row":{name:"Single-arm Cable Row",vn:"Kéo cáp một tay về hông",primary:"Cơ xô",secondary:["Lưng giữa","Tay trước","Core"],impact:[["Cơ xô",4],["Lưng giữa",3],["Tay trước",2],["Core",2]],kind:"Kéo ngang một tay",why:"Kéo khuỷu gần hông để nhấn mạnh xô; bổ sung cảm nhận từng bên sau bài row tựa ngực.",setup:"Đặt tay cầm đơn tại máy cáp ngang bụng, đứng hoặc ngồi vững, vai cân bằng.",steps:["Kéo khuỷu sát sườn hướng về hông, giữ thân ổn định.","Dừng nhẹ khi khuỷu qua thân trong biên độ tự nhiên.","Duỗi tay chậm, không để cáp kéo xoay người."],breath:"Thở ra khi kéo; hít vào khi trả cáp.",cues:"Không biến thành bài kéo bằng cơ tay trước; hạn chế xoay thân.",errors:"Giật lưng, xoay hông, nâng vai gần tai.",alternatives:["db-row","seated-row","chest-row"],range:"10–12/tay",sets:2,rest:65,load:"Bắt đầu cáp nhẹ, giữ 2–3 reps dự phòng mỗi bên.",equipment:"Cable + tay cầm đơn"},
+"biceps-curl":{name:"Cable Biceps Curl",vn:"Cuốn tay trước với cáp",primary:"Tay trước",secondary:["Cơ cẳng tay"],impact:[["Tay trước",5],["Cẳng tay",2]],kind:"Gập khuỷu",why:"Một bài cô lập ngắn hỗ trợ Pull Day, không cần nhiều volume trực tiếp.",setup:"Đứng trước cáp thấp, tay nắm thanh/dây, khuỷu sát thân, vai thư giãn.",steps:["Giữ khuỷu gần thân, cuốn tay cầm lên không đung đưa.","Dừng ngắn ở đỉnh, cảm nhận bắp tay trước.","Hạ chậm đến khi khuỷu duỗi gần hết."],breath:"Thở ra khi cuốn; hít vào khi hạ.",cues:"Cổ tay trung tính, không mượn lực lưng.",errors:"Đu người, di chuyển khuỷu quá nhiều, thả cáp nhanh.",alternatives:["db-row"],range:"10–12",sets:1,rest:55,load:"Cáp nhẹ–vừa, ưu tiên kỹ thuật hơn tạ.",equipment:"Máy cáp"},
+"smith-glute-bridge":{name:"Smith Glute Bridge",vn:"Cầu mông máy Smith",primary:"Mông lớn",secondary:["Đùi sau","Core"],impact:[["Mông lớn",5],["Đùi sau",2],["Core",2]],kind:"Duỗi hông",why:"Biến thể cầu mông với tải bên ngoài, nhấn mông trong ngày Glutes B mà không thêm nhiều set squat/lunge.",setup:"Nằm trên thảm hoặc bệ thấp ổn định dưới Smith, thanh có đệm ngang nếp hông, chân chắc trên sàn. Kiểm tra khóa thanh trước khi tập.",steps:["Siết bụng, đạp bàn chân nâng hông lên với chuyển động có kiểm soát.","Dừng khi thân–đùi gần thẳng, siết mông nhẹ mà không ưỡn lưng.","Hạ hông chậm, tránh thanh tạ va mạnh."],breath:"Thở ra khi nâng hông, hít vào khi hạ.",cues:"Khác Smith Hip Thrust (lưng trên tựa ghế): Glute Bridge được thực hiện với lưng trên gần sàn hoặc bệ rất thấp.",errors:"Đặt thanh sai vị trí, cố duỗi quá mức bằng lưng, tạ quá nặng.",alternatives:["glute-bridge","hip-thrust","smith-hip-thrust"],range:"10–12",sets:3,rest:100,load:"Làm quen đường đi máy không tạ hoặc rất nhẹ trước; kg phụ thuộc máy.",equipment:"Smith + thảm/đệm thanh"},
+"incline-db-press":{name:"Incline Dumbbell Press",vn:"Đẩy ngực nghiêng với tạ đơn",primary:"Ngực",secondary:["Tay sau","Vai trước"],impact:[["Ngực",5],["Tay sau",3],["Vai trước",2]],kind:"Đẩy ngực",why:"Nhấn ngực trên trong cùng chuỗi Push sau Chest Press, với trọng lượng và biên độ tự kiểm soát.",setup:"Chỉnh ghế nghiêng nhẹ khoảng 15–30°, hai chân đặt vững, vai tựa ghế.",steps:["Giữ cổ tay thẳng, hạ tạ chậm hai bên ngực trên.","Đẩy lên theo cung thoải mái, không khóa cứng khuỷu.","Lặp lại với nhịp kiểm soát, không đánh tạ vào nhau."],breath:"Hít vào khi hạ tạ, thở ra khi đẩy.",cues:"Để khuỷu lệch khoảng 30–60° so với thân; không chọn ghế quá dốc.",errors:"Ưỡn lưng quá mức, tạ xuống quá sâu gây đau vai, đánh tạ vào nhau.",alternatives:["incline-press","chest-press"],range:"10–12",sets:2,rest:85,load:"Chọn tạ mỗi tay phù hợp để giữ 2–3 reps dự phòng.",equipment:"Ghế nghiêng + dumbbells"},
+"pec-deck":{name:"Pec Deck / Chest Fly",vn:"Máy ép ngực",primary:"Ngực",secondary:["Vai trước"],impact:[["Ngực",5],["Vai trước",1]],kind:"Khép tay ngang",why:"Hoàn thành cụm ngực trước khi chuyển sang tay sau trong Push Day.",setup:"Ngồi tựa lưng, chỉnh ghế để tay cầm/đệm ngang vùng giữa ngực, vai thoải mái.",steps:["Giữ khuỷu hơi cong, khép hai tay về trước ngực.","Dừng ngắn, kiểm soát cơ ngực; không nhún vai.","Mở tay từ từ đến biên độ thoải mái, không ép quá sâu."],breath:"Thở ra khi khép tay; hít vào khi mở.",cues:"Không cần mức tạ lớn; giữ vai ổn định.",errors:"Giật máy, kéo tay quá sâu làm đau vai, rướn cổ.",alternatives:["chest-press","incline-press"],range:"12–15",sets:2,rest:65,load:"Tạ nhẹ–vừa, kỹ thuật chuẩn và không đau vai.",equipment:"Pec deck machine"},
+"overhead-triceps":{name:"Overhead Cable Triceps Extension",vn:"Duỗi tay sau cáp qua đầu",primary:"Tay sau",secondary:["Core"],impact:[["Tay sau",5],["Core",1]],kind:"Duỗi khuỷu",why:"Bổ trợ tay sau ở tư thế vai gập, khác góc với Triceps Pushdown.",setup:"Dùng dây rope cáp, quay lưng về máy, hai tay đưa lên gần đầu, chân đứng chắc.",steps:["Giữ phần cánh tay trên tương đối ổn định, duỗi khuỷu để đẩy dây.","Dừng trước khi khóa khuỷu, không để vai đau.","Gập khuỷu trở lại chậm, giữ bụng ổn định."],breath:"Thở ra khi duỗi; hít vào lúc gập trở lại.",cues:"Thực hiện nhẹ; nếu vai không thoải mái có thể bỏ bài này.",errors:"Ưỡn lưng, đẩy quá nặng, để khuỷu văng quá rộng.",alternatives:["triceps"],range:"10–12",sets:2,rest:60,load:"Cáp nhẹ, giữ 2–3 reps dự phòng; không bắt buộc nếu quá giờ.",equipment:"Cable + rope"},
+"cable-external-rotation":{name:"Cable External Rotation",vn:"Xoay vai ngoài với cáp",primary:"Cơ xoay vai",secondary:["Vai sau"],impact:[["Cơ xoay vai",5],["Vai sau",1]],kind:"Xoay khớp vai",why:"Bài tải nhẹ rèn kiểm soát xoay vai ở cuối Push Day; không phải bài tăng cơ vai chính.",setup:"Chỉnh cáp ngang khuỷu, đứng nghiêng cạnh máy, giữ khuỷu gập 90° áp gần thân.",steps:["Giữ khuỷu ở gần thân, xoay cẳng tay nhẹ ra ngoài.","Dừng ở biên độ thoải mái, thân không xoay theo.","Quay vào chậm, tập hai bên."],breath:"Thở đều, thở ra nhẹ khi xoay ngoài, hít vào khi trở về.",cues:"Tạ rất nhẹ, chỉ tập khi vai không đau; tránh tập như bài phá kỷ lục.",errors:"Xoay thân, kéo bằng vai cả khối, tăng tạ gây đau.",alternatives:["face-pull"],range:"12–15/bên",sets:1,rest:45,load:"Cáp rất nhẹ; bài tùy chọn nếu hết 45 phút.",equipment:"Cable tay đơn"}
+});
 const planBase=[
-{day:1,label:"Thứ 2",code:"Lower A",title:"Mông & đùi sau",intro:"Duỗi hông + gập hông để duy trì cơ mông và đùi sau.",cardio:"10–20 phút · tốc độ 4.5–5 km/h · dốc 2–5% tùy hồi phục",ids:["hip-thrust","rdl","leg-curl","hip-abductor","deadbug"]},
-{day:2,label:"Thứ 3",code:"Upper A",title:"Lưng & vai sau",intro:"Kéo dọc, kéo ngang và sức đẩy vừa đủ để duy trì cân đối thân trên.",cardio:"20–30 phút · hướng đến 5 km/h, dốc 6–8% nếu chân hồi phục",ids:["lat-pulldown","chest-row","reverse-pec","incline-press","pallof"]},
-{day:4,label:"Thứ 5",code:"Lower B",title:"Chân cân đối & mông",intro:"Duy trì sức mạnh chân một bên nhưng kiểm soát volume đùi trước.",cardio:"10–20 phút nhẹ · dốc 0–4%; giảm nếu Bulgarian gây DOMS",ids:["single-leg-press","bulgarian","leg-curl","glute-bridge","side-plank"]},
-{day:5,label:"Thứ 6",code:"Upper B",title:"Lưng & ngực",intro:"Tăng sức kéo có kiểm soát, duy trì ngực/tay sau mà không nhấn mạnh vai.",cardio:"20–30 phút · hướng đến 5 km/h, dốc 6–8% nếu hồi phục",ids:["assisted-pullup","seated-row","chest-press","straight-pulldown","triceps"]}
+{day:1,label:"Thứ 2",code:"Glutes A",title:"Mông lớn & đùi sau",focus:"Mông · chuỗi sau",intro:"Duỗi hông nặng trước → gập hông → đùi sau → mông cô lập → core ngắn.",cardio:"10–20 phút nhẹ · dốc thấp; giảm nếu đùi sau/mông còn mỏi",ids:["hip-thrust","rdl","seated-leg-curl","cable-kickback","hip-abductor","deadbug"]},
+{day:2,label:"Thứ 3",code:"Pull Day",title:"Lưng, xô & tay trước",focus:"Chuỗi kéo",intro:"Xô kéo dọc → lưng giữa → kéo một tay về hông → cô lập xô → vai sau → tay trước. Không xen bài ngực.",cardio:"20–30 phút nếu hồi phục tốt · không bắt buộc dốc cao",ids:["lat-pulldown","chest-row","single-cable-row","straight-pulldown","reverse-pec","biceps-curl"]},
+{day:4,label:"Thứ 5",code:"Glutes B",title:"Mông & duy trì sức mạnh chân",focus:"Mông · chân vừa phải",intro:"Mông duỗi hông → hip hinge nhẹ → đùi trước vừa → đùi sau → mông bên → core. Không bắt buộc Bulgarian.",cardio:"10–20 phút nhẹ, ưu tiên hồi phục chân",ids:["smith-glute-bridge","cable-pullthrough","leg-press","leg-curl","hip-abductor","side-plank"]},
+{day:5,label:"Thứ 6",code:"Push Day",title:"Ngực & tay sau",focus:"Chuỗi đẩy",intro:"Ngực đẩy máy → ngực nghiêng → ép ngực → tay sau → tay sau góc khác → xoay vai nhẹ. Không xen bài lưng.",cardio:"20–30 phút nếu còn sức sau tập",ids:["chest-press","incline-db-press","pec-deck","triceps","overhead-triceps","cable-external-rotation"]}
 ];
-const rotate={
-A:planBase.map(p=>p.ids),
-B:[["smith-hip-thrust","db-rdl","seated-leg-curl","hip-abductor","deadbug"],["assisted-pullup","db-row","face-pull","chest-press","pallof"],["leg-press","step-up","seated-leg-curl","cable-kickback","side-plank"],["neutral-pulldown","chest-row","incline-press","straight-pulldown","triceps"]],
-C:[["hip-thrust","rdl","seated-leg-curl","band-abduction","deadbug"],["neutral-pulldown","chest-row","reverse-pec","chest-press","pallof"],["single-leg-press","step-up","leg-curl","cable-kickback","plank"],["assisted-pullup","seated-row","incline-press","straight-pulldown","triceps"]]
+/* Each weekly row: training action, feedback metric, 6-position set pattern, target RIR, status.
+   No automatic load increases. User logs reps/weight/RIR, then chooses whether to progress. */
+const setPattern={
+intro:[2,2,1,1,1,1],next:[2,2,2,1,1,1],
+build:[3,2,2,2,1,1],full:[3,2,2,2,2,1],
+deload:[2,1,1,1,1,1],return:[3,2,2,1,1,1],
+moderate:[3,2,2,2,1,1]
 };
+const rows=[
+["Kỹ thuật & cảm nhận cơ","Chọn tạ nhẹ; quay lại nhịp tập. Không tăng tạ, không tập tới kiệt sức.","intro","4",false],
+["Ổn định 4 ngày","Giữ mức tạ; chỉ tăng 1 rep nếu nhẹ và hồi phục tốt.","next","3–4",false],
+["Nâng khối lượng có kiểm soát","Thêm set cho bài chính nếu hết đau cơ kéo dài; ưu tiên form.","build","3",false],
+["Đánh giá số đo lần đầu","Tăng dần tới mức làm việc ổn định; đo eo/rốn/mông/đùi.","full","2–3",true],
+["Ưu tiên thêm reps","Giữ tạ, tăng reps trong khoảng; không đổi bài.","full","2–3",false],
+["Tăng tạ khi đủ điều kiện","Nếu mọi set đạt giới hạn reps trên và RIR ≥2, thử một nấc tạ.","full","2–3",false],
+["Củng cố tạ mới","Giữ tạ đã lựa chọn; ưu tiên ổn định kỹ thuật.","full","2–3",false],
+["Giảm tải & kiểm tra","Giảm khoảng 35–45% set và mức khó, đo vòng cơ thể.","deload","4–5",true],
+["Trở lại sau giảm tải","Quay về tạ phù hợp từ tuần 7, không cố phá kỷ lục.","return","2–3",false],
+["Tăng reps các bài chính","Hip thrust / Lat Pulldown / Chest Press: nhích reps nếu form tốt.","moderate","2–3",false],
+["Tiến độ ở bài chính","Tăng nấc tạ nhỏ nếu đủ reps, RIR phù hợp và khớp không đau.","full","2–3",false],
+["Đánh giá cân & vòng đo","Đối chiếu cân trung bình 7 ngày, eo, bụng, sức tập; không ép đạt 60 kg.","full","2–3",true],
+["Giữ cơ khi giảm mỡ","Ưu tiên lực hip thrust và nhóm kéo/đẩy, không thêm bài đùi nặng.","full","2–3",false],
+["Nâng reps bài phụ","Tăng reps có kiểm soát ở curl, abductor, kickback, fly.","full","2–3",false],
+["Tăng tiến nhỏ","Chỉ tăng tải bài đủ điều kiện, giữ tổng set tuần.","full","2–3",false],
+["Giảm tải nếu mệt","Mặc định giảm set để đánh giá. Nếu hồi phục rất tốt, có thể giữ mức tuần 15.","deload","4–5",true],
+["Quay lại bài nền","Trở lại 10 set/buổi sau tuần kiểm tra, ổn định kỹ thuật.","return","2–3",false],
+["Tăng reps không tăng bài","Giữ cả sáu vị trí, phát triển reps ở bài chính.","moderate","2–3",false],
+["Kiểm soát tải đùi","Chỉ tăng tạ nếu đùi hồi phục tốt; ưu tiên cảm nhận mông.","full","2–3",false],
+["Mốc hình thể khoảng 58 kg","Đo đủ eo/rốn/mông/đùi/tay, đánh giá lại cân mục tiêu nếu cần.","full","2–3",true],
+["Chất lượng reps & biên độ","Giữ tạ vừa, siết mông đúng kỹ thuật; không tập để đau cơ.","full","2–3",false],
+["Duy trì sức mạnh & cardio","Tăng reps hoặc đi bộ nếu hồi phục tốt, không lấy cardio bù ăn.","full","2–3",false],
+["Không tăng tải vô điều kiện","Ưu tiên sức ngủ, dinh dưỡng, duy trì mức tạ và kỹ thuật.","full","2–3",false],
+["Đánh giá hồi phục","Giảm tải mặc định khi tích lũy mệt; đo lại chỉ số cơ thể.","deload","4–5",true],
+["Giai đoạn hoàn thiện","Giữ 6 bài lõi, tăng reps vừa đủ, bảo toàn sức mạnh.","full","2–3",false],
+["Duy trì đều 4 buổi","Ưu tiên độ bền thói quen và ngủ đủ, không ép tăng tạ.","full","2–3",false],
+["Chuẩn bị duy trì dinh dưỡng","Đánh giá mức ăn phù hợp, giữ mông và thân trên khỏe.","full","2–3",false],
+["Tổng kết 28 tuần","Đo toàn bộ chỉ số; quyết định dừng giảm cân hoặc mở rộng.","return","2–4",true],
+["MỞ RỘNG · Đặt mục tiêu mới","Chỉ tiếp tục nếu sức khỏe và hình thể phù hợp; không ép về 55 kg.","return","2–3",false],
+["MỞ RỘNG · Tăng reps","Tăng reps bài chính nếu phục hồi tốt; giữ đủ protein.","moderate","2–3",false],
+["MỞ RỘNG · Giữ khối cơ","Duy trì tập mông và Pull/Push, không tăng volume đùi vì nóng vội.","full","2–3",false],
+["MỞ RỘNG · Kiểm tra số đo","Đo vòng eo/mông/đùi, cân trung bình; đánh giá tiếp tục hay duy trì.","full","2–3",true],
+["MỞ RỘNG · Giảm mỡ nhẹ","Chỉ tiếp tục thâm hụt vừa phải nếu năng lượng và hồi phục tốt.","full","2–3",false],
+["MỞ RỘNG · Tập đều","Duy trì bài có ích và nấc tạ hiện tại, tránh kiệt sức.","full","2–3",false],
+["MỞ RỘNG · Thử duy trì","Cân nhắc chuyển gần mức ăn duy trì nếu đã đạt hình thể mong muốn.","moderate","2–4",false],
+["MỞ RỘNG · Tổng kết","Đánh giá sức mạnh, chỉ số, thời gian ngủ; lập mục tiêu duy trì mới.","return","2–4",true]
+];
+const weekPlans=rows.map(([focus,action,pattern,rir,checkpoint],i)=>({
+week:i+1,focus,action,rir,checkpoint,
+sets:setPattern[pattern].slice(),setDescription:pattern==="deload"?"Giảm tải, 7 set/buổi":pattern==="intro"?"Khởi động 8 set/buổi":pattern==="next"?"9 set/buổi":pattern==="build"?"11 set/buổi":pattern==="return"?"10 set/buổi":pattern==="moderate"?"11 set/buổi":"12 set/buổi",
+extended:i>=28,deload:pattern==="deload"
+}));
 const phases=[
-{start:1,end:2,name:"Tập lại & phục hồi",short:"Return",variant:"A",sets:"Giảm còn 1–2 set/bài",rir:"3–4",emphasis:"Lấy lại kỹ thuật, giảm DOMS và ổn định 4 buổi; không tập tới kiệt sức.",cardio:"10–20 phút nhẹ; ngày chân có thể chỉ 10 phút",color:"peach"},
-{start:3,end:6,name:"Xây nền ổn định",short:"Foundation",variant:"A",sets:"2–3 set bài chính, 2 set phụ",rir:"2–3",emphasis:"Giữ nguyên bài để tăng reps trước khi tăng tạ. Kiểm tra khả năng hồi phục.",cardio:"Tăng dần theo sức, tối đa khoảng 30 phút/buổi",color:"mint"},
-{start:7,end:10,name:"Biến thể B & tăng tiến",short:"Progress B",variant:"B",sets:"2–3 set bài chính, 2 set phụ",rir:"2–3",emphasis:"Thay một số bài sang biến thể tương đương; không thay mục tiêu nhóm cơ.",cardio:"Theo Lower/Upper, không ép dốc 8 ngày chân",color:"lavender"},
-{start:11,end:11,name:"Tuần giảm tải",short:"Deload",variant:"B",sets:"1–2 set/bài",rir:"4–5",emphasis:"Giảm volume 30–50%, ưu tiên hồi phục và kiểm tra kỹ thuật.",cardio:"Giữ đi bộ nhẹ, giảm khi mệt",color:"peach"},
-{start:12,end:14,name:"Củng cố biến thể B",short:"Consolidate",variant:"B",sets:"2–3 set bài chính, 2 set phụ",rir:"2–3",emphasis:"Tiếp tục tăng reps/tạ nhỏ ở biến thể B nếu ổn định.",cardio:"20–30 phút ngày Upper nếu phù hợp",color:"lavender"},
-{start:15,end:18,name:"Biến thể C & giữ cơ",short:"Progress C",variant:"C",sets:"2–3 set bài chính, 2 set phụ",rir:"2–3",emphasis:"Đổi một số góc kéo/chân để duy trì động lực và kiểm soát sức mạnh.",cardio:"Điều chỉnh theo năng lượng và số bước",color:"mint"},
-{start:19,end:19,name:"Tuần giảm tải",short:"Deload",variant:"C",sets:"1–2 set/bài",rir:"4–5",emphasis:"Hạ tải tạm thời nếu mệt tích lũy. Cân nhắc nghỉ thêm nếu cần.",cardio:"Chủ yếu đi bộ nhẹ",color:"peach"},
-{start:20,end:23,name:"Tập trung hình thể",short:"Shape",variant:"C",sets:"2–3 set bài chính, 2 set phụ",rir:"2–3",emphasis:"Giữ bài hiệu quả nhất; theo dõi eo, mông, đùi và hiệu suất.",cardio:"Duy trì theo hồi phục, không lấy cardio bù cho ăn uống",color:"lavender"},
-{start:24,end:24,name:"Đánh giá & giảm tải",short:"Review",variant:"C",sets:"1–2 set/bài",rir:"4–5",emphasis:"Đo lại số đo và InBody trong điều kiện tương tự, xem lại mục tiêu.",cardio:"Nhẹ và linh hoạt",color:"peach"},
-{start:25,end:28,name:"Củng cố & duy trì",short:"Maintain",variant:"A",sets:"2–3 set, điều chỉnh theo hồi phục",rir:"2–4",emphasis:"Quay về bài nền dễ theo dõi; học cách duy trì sau giảm cân. 55 kg không phải hạn chót bắt buộc.",cardio:"Đủ mức vận động thoải mái, không tăng vô hạn",color:"mint"}
+{start:1,end:8,name:"Giai đoạn 1 · Làm quen và xây nền",short:"Foundation",sets:"8 → 12 set; tuần 8 giảm tải",rir:"2–4",emphasis:"Học động tác, ưu tiên form, nâng reps trước khi tăng mức tạ.",color:"peach"},
+{start:9,end:16,name:"Giai đoạn 2 · Tăng tiến có kiểm soát",short:"Progress",sets:"10 → 12 set; tuần 16 đánh giá hồi phục",rir:"2–3",emphasis:"Giữ bài chính, tăng reps và tăng nấc tạ nhỏ khi đủ điều kiện.",color:"mint"},
+{start:17,end:24,name:"Giai đoạn 3 · Giữ cơ và hình thể",short:"Shape",sets:"10 → 12 set; tuần 24 đánh giá",rir:"2–3",emphasis:"Duy trì mông, theo dõi đùi/eo/tay và khả năng hồi phục.",color:"lavender"},
+{start:25,end:28,name:"Giai đoạn 4 · Tổng kết và chuyển tiếp",short:"Review",sets:"10–12 set; đánh giá cuối tuần 28",rir:"2–4",emphasis:"Đánh giá hình thể và sức mạnh, chuẩn bị bước sang duy trì.",color:"peach"},
+{start:29,end:36,name:"Giai đoạn mở rộng · Tùy chọn",short:"Extension",sets:"10–12 set khi phù hợp",rir:"2–4",emphasis:"Chỉ tiếp tục nếu cần và an toàn, không xem 55 kg là hạn chót.",color:"mint"}
 ];
-const weekFocus=[
-"Kiểm tra đau cơ; làm quen lại mức tạ và 4 buổi nếu chịu được","Giữ kỹ thuật, không tăng mức tạ khi còn đau kéo dài",
-"Thêm set cho bài chính nếu phục hồi ổn","Ổn định giờ tập; đo lại vòng eo và rốn",
-"Tăng reps trước khi tăng tạ","Đối chiếu log mức tạ và chất lượng buổi",
-"Chuyển một số bài sang biến thể B; tập kỹ thuật mới","Ổn định biến thể B, chưa vội tăng tạ",
-"Tăng reps hoặc một nấc tạ nhỏ khi đáp ứng RIR","Kiểm tra volume mông/đùi, tránh quá tải",
-"Giảm tải: nghỉ, ngủ và đánh giá đau cơ",
-"Trở lại tạ phù hợp sau tuần giảm tải","Đánh giá cân trung bình 7 ngày và số đo",
-"Ghi chú bài phù hợp nhất và bài cần thay",
-"Chuyển sang biến thể C; làm quen chuyển động mới","Ổn định bài C, so sánh mức khó",
-"Duy trì sức kéo/lực duỗi hông khi giảm cân","Đánh giá mỡ và cơ theo nhiều dữ liệu, không chỉ InBody",
-"Giảm tải, ưu tiên kỹ thuật và giấc ngủ",
-"Trở lại tiến độ với RIR 2–3","Điều chỉnh giờ ăn quanh buổi 19:30",
-"Rà soát cardio có ảnh hưởng chân không","Xem tình trạng đói, mệt và vòng eo",
-"Giảm tải; đo lại sức khỏe và các số đo",
-"Trở lại bài nền dễ theo dõi tiến bộ","Lập kế hoạch ăn duy trì thử nghiệm",
-"Kiểm tra khả năng duy trì lịch 4 buổi","Đánh giá toàn bộ hành trình; quyết định duy trì hoặc kéo dài"
-];
+const weekFocus=weekPlans.map(w=>w.focus);
 function phaseOf(w){return phases.find(p=>w>=p.start&&w<=p.end)||phases[0]}
+function weekOf(w){return weekPlans[Math.min(36,Math.max(1,w))-1]}
 function workoutOf(week,dayIndex){
- const p=planBase[dayIndex],ph=phaseOf(week),ids=rotate[ph.variant][dayIndex];
- const easy=week<=2,deload=[11,19,24].includes(week);
- return {...p,variant:ph.variant,phase:ph,exercises:ids.map((id,i)=>{
- const e=E[id];
- const sets=deload? (i<2?2:1) :easy? 2 :i<2?3:2;
- return {id,name:e.name,primary:e.primary,secondary:e.secondary,sets,reps:e.range,rest:e.rest,load:e.load};
- })};
+ const p=planBase[dayIndex],ph=phaseOf(week),cfg=weekOf(week);
+ if(!p||!cfg)throw Error("Unknown training day/week");
+ return {...p,variant:"Core",phase:ph,week:cfg,
+  exercises:p.ids.map((id,i)=>{
+  const e=E[id];
+  if(!e)throw Error("Unknown FIT55 exercise "+id);
+  return {id,name:e.name,primary:e.primary,secondary:e.secondary,
+   sets:cfg.sets[i],reps:e.range,rest:e.rest,load:e.load,optional:i===5};
+  })};
 }
 const measurementFields=[
 {key:"underbust",label:"Chân ngực",unit:"cm",old:null,note:"Vòng dưới chân ngực; đo sát dưới bầu ngực, thở bình thường và giữ thước ngang."},
@@ -112,5 +151,5 @@ const foods=[
 {id:"sweetpotato",name:"Khoai lang chín",per:100,kcal:86,protein:1.6,carb:20.1,fat:.1},
 {id:"bread",name:"Bánh mì thường",per:100,kcal:265,protein:9,carb:49,fat:3.2}
 ];
-g.FIT55_DATA={EXERCISES:E,BASE:planBase,PHASES:phases,WEEK_FOCUS:weekFocus,phaseOf,workoutOf,MEASURE_FIELDS:measurementFields,FOODS:foods,START_WEIGHT:63.3,GOAL_WEIGHT:55,START_DATE:"2026-10-19"};
+g.FIT55_DATA={EXERCISES:E,BASE:planBase,PHASES:phases,WEEK_FOCUS:weekFocus,WEEK_PLANS:weekPlans,CORE_WEEKS:28,MAX_WEEKS:36,phaseOf,weekOf,workoutOf,MEASURE_FIELDS:measurementFields,FOODS:foods,START_WEIGHT:63.3,GOAL_WEIGHT:55,START_DATE:"2026-10-19"};
 })(window);
