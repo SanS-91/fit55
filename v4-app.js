@@ -152,20 +152,20 @@ return '<svg class="chart" viewBox="0 0 700 235" role="img" aria-label="Đồ th
 function renderGoals(){
 const m=measures(),l=latest('weight'),lastS={};for(const f of D.MEASURE_FIELDS)lastS[f.key]=latest(f.key);
 const goalCards=D.MEASURE_FIELDS.map(f=>{
-const x=lastS[f.key],t=state.profile.goals[f.key];return '<div class="measuremini"><span>'+f.label+'</span><b>'+(x?num(x[f.key])+' '+f.unit:'Chưa đo')+'</b><small>'+(x?'Ngày '+escape(x.date):'Tham chiếu cũ: '+f.old+' '+f.unit)+'</small>'+(t?'<div class="meta" style="margin-top:5px">Mong muốn: '+num(t)+' '+f.unit+'</div>':'')+'</div>'}).join('');
+const x=lastS[f.key],t=state.profile.goals[f.key];return '<div class="measuremini"><span>'+f.label+'</span><b>'+(x?num(x[f.key])+' '+f.unit:'Chưa đo')+'</b><small>'+(x?'Ngày '+escape(x.date):(f.old==null?'Chưa có số đo cũ':'Tham chiếu cũ: '+f.old+' '+f.unit))+'</small>'+(t?'<div class="meta" style="margin-top:5px">Mong muốn: '+num(t)+' '+f.unit+'</div>':'')+'</div>'}).join('');
 let first= m[0],last=m.at(-1),len=m.length;
 let insight=len<3?'Chưa đủ số lần đo để phân tích xu hướng. Hãy nhập đều và so sánh trung bình nhiều ngày.':Number(last.weight)<Number(first.weight)?'Cân gần nhất thấp hơn lần gốc. Kiểm tra thêm vòng eo, sức tập và thời điểm chu kỳ kinh để đánh giá giảm mỡ.':'Cân gần nhất chưa thấp hơn lần gốc. Không nên kết luận tăng mỡ nếu dữ liệu chỉ có vài lần đo hoặc thay đổi nước.';
 return '<div class="stack">'+heading('BODY GOALS · 55 KG','Mục tiêu cân nặng & số đo','Một nơi để đặt mục tiêu, xem cơ thể thay đổi và ghi nhận InBody. Các vòng đo cũ không được coi là vòng đo hiện tại.')+
 '<div class="grid g4">'+[['Cân mới nhất',num(latestWeight())+' kg','Mốc gốc 63.3 kg'],['Mục tiêu',num(state.profile.target)+' kg','Có thể chỉnh, đánh giá lại ở 58 kg'],['Mỡ InBody',num(latest('fat')?.fat)+' kg','Ngày '+escape(latest('fat')?.date||'—')],['Cơ xương',num(latest('muscle')?.muscle)+' kg','Ngày '+escape(latest('muscle')?.date||'—')]].map(x=>'<div class="card stat"><div class="statlabel">'+x[0]+'</div><div class="statnum">'+x[1]+'</div><div class="meta">'+x[2]+'</div></div>').join('')+'</div>'+
-'<div class="grid g2">'+card('Cân nặng & xu hướng','<div class="actions" style="margin-bottom:9px">'+[['weight','Cân'],['waist','Eo'],['navel','Ngang rốn'],['hip','Mông']].map(x=>'<button class="subtab '+(chartMeasure===x[0]?'active':'')+'" data-chart="'+x[0]+'">'+x[1]+'</button>').join('')+'</div>'+measuresChart(m,chartMeasure)+'<p class="meta">Theo dõi cân trung bình 7 ngày để giảm ảnh hưởng của nước, glycogen và chu kỳ. Khi chưa đủ dữ liệu, app không tự dự báo mức giảm.</p>')+
+'<div class="grid g2">'+card('Cân nặng & xu hướng','<div class="actions" style="margin-bottom:9px">'+[['weight','Cân'],['waist','Eo'],['navel','Ngang rốn'],['hip','Mông'],['chest','Ngực'],['underbust','Chân ngực']].map(x=>'<button class="subtab '+(chartMeasure===x[0]?'active':'')+'" data-chart="'+x[0]+'">'+x[1]+'</button>').join('')+'</div>'+measuresChart(m,chartMeasure)+'<p class="meta">Theo dõi cân trung bình 7 ngày để giảm ảnh hưởng của nước, glycogen và chu kỳ. Khi chưa đủ dữ liệu, app không tự dự báo mức giảm.</p>')+
 card('Mốc hành trình','<div class="checklist">'+[61,59,58,55].map((x,i)=>'<div class="item"><span><b>'+x+' kg</b> · '+['Thói quen','Giảm mỡ ổn định','Checkpoint hình thể','Mốc đích tự chọn'][i]+'</span><span class="pill '+(latestWeight()<=x?'mint':'')+'">'+(latestWeight()<=x?'Đã chạm':'Còn '+num(Math.max(0,latestWeight()-x))+' kg')+'</span></div>').join('')+'</div><div class="notice amber" style="margin-top:14px">Mốc 55 kg là mong muốn, không phải bắt buộc. Tại 58 kg, đánh giá lại cảm giác khỏe, sức mạnh, số đo và chu kỳ trước khi tiếp tục.</div>')+'</div>'+
-card('Số đo hình thể','<div class="metricgrid">'+goalCards+'</div><p class="meta" style="margin-top:11px">Số đo tham chiếu cũ: eo 67 · rốn 72 · mông 96 · đùi 56 · bắp tay 28 · bắp chân 35 cm. Chúng không cùng ngày đo 16/10.</p><div class="actions" style="margin-top:13px"><button class="btn primary" data-open-measure>+ Nhập số đo mới</button><button class="btn" data-open-goal>Thiết lập mục tiêu từng vòng đo</button></div>')+
+card('Số đo hình thể','<div class="metricgrid">'+goalCards+'</div><p class="meta" style="margin-top:11px">Số đo tham chiếu cũ: eo 67 · rốn 72 · mông 96 · đùi 56 · bắp tay 28 · bắp chân 35 cm. Chúng không cùng ngày đo 16/10.</p><div class="actions" style="margin-top:13px"><button class="btn primary" data-open-measure>+ Nhập số đo mới</button><button class="btn" data-open-goal>Thiết lập mục tiêu từng vòng đo</button><label class="btn" for="measurement-import">↑ Nhập bộ số đo JSON</label><input id="measurement-import" type="file" accept=".json,application/json" style="position:absolute;left:-10000px;width:1px;height:1px" aria-label="Nhập bộ số đo từ tệp JSON"></div>')+
 '<div class="grid g2">'+card('Body insights','<p class="quiet">'+escape(insight)+'</p><div class="spacer"></div><div class="notice"><b>InBody cần thận trọng:</b> khi lượng nước, thời gian đo hoặc buổi tập trước đó thay đổi, ước tính cơ và mỡ cũng có thể thay đổi. Không coi SMM tăng/giảm nhỏ là kết luận chắc chắn.</div>')+
 card('Cách đo để so sánh được','<div class="checklist"><div class="item">Cân buổi sáng, sau vệ sinh <span>2–7 lần/tuần</span></div><div class="item">Đo eo, bụng, mông, tay, đùi <span>2 tuần/lần</span></div><div class="item">Đo cùng thước, cùng vị trí <span>Không siết thước</span></div><div class="item">InBody trong điều kiện tương tự <span>4–6 tuần/lần</span></div></div><p class="notice" style="margin-top:12px">Lưu ngày đo, tình trạng chu kỳ kinh và cảm giác giữ nước để dễ so sánh.</p>')+'</div>'+
-card('Lịch sử chỉ số','<div class="tablewrap"><table class="table"><thead><tr><th>Ngày</th><th>Cân (kg)</th><th>Eo / Rốn (cm)</th><th>Mông / Đùi (cm)</th><th>Mỡ (kg)</th><th>SMM (kg)</th><th>Thao tác</th></tr></thead><tbody>'+m.slice().reverse().map(x=>'<tr><td>'+escape(x.date)+(x.date===BASE.date?' · Gốc':'')+'</td><td>'+num(x.weight)+'</td><td>'+num(x.waist)+' / '+num(x.navel)+'</td><td>'+num(x.hip)+' / '+num(x.thigh)+'</td><td>'+num(x.fat)+'</td><td>'+num(x.muscle)+'</td><td>'+(x.date===BASE.date?'—':'<button class="btn small" data-edit-measure="'+escape(x.date)+'">Sửa</button>')+'</td></tr>').join('')+'</tbody></table></div>')+'</div>'
+card('Lịch sử chỉ số','<div class="tablewrap"><table class="table"><thead><tr><th>Ngày</th><th>Cân (kg)</th><th>Eo / Rốn (cm)</th><th>Mông / Đùi (cm)</th><th>Ngực / Chân ngực (cm)</th><th>Mỡ (kg)</th><th>SMM (kg)</th><th>Thao tác</th></tr></thead><tbody>'+m.slice().reverse().map(x=>'<tr><td>'+escape(x.date)+(x.date===BASE.date?' · Gốc':'')+'</td><td>'+num(x.weight)+'</td><td>'+num(x.waist)+' / '+num(x.navel)+'</td><td>'+num(x.hip)+' / '+num(x.thigh)+'</td><td>'+num(x.chest)+' / '+num(x.underbust)+'</td><td>'+num(x.fat)+'</td><td>'+num(x.muscle)+'</td><td>'+(x.date===BASE.date?'—':'<button class="btn small" data-edit-measure="'+escape(x.date)+'">Sửa</button>')+'</td></tr>').join('')+'</tbody></table></div>')+'</div>'
 }
 function measurementForm(exist){
-const x=exist||{},a=[['weight','Cân nặng (kg)',30,150],['waist','Eo (cm)',35,150],['navel','Bụng ngang rốn (cm)',35,180],['hip','Mông (cm)',45,180],['thigh','Đùi (cm)',20,100],['arm','Bắp tay (cm)',10,70],['calf','Bắp chân (cm)',15,80],['chest','Ngực (cm)',40,150],['fat','Khối lượng mỡ (kg)',0,80],['muscle','Cơ xương SMM (kg)',0,65],['pbf','Tỷ lệ mỡ PBF (%)',0,70],['water','Nước cơ thể (L)',0,80]];
+const x=exist||{},a=[['weight','Cân nặng (kg)',30,150],['waist','Eo (cm)',35,150],['navel','Bụng ngang rốn (cm)',35,180],['hip','Mông (cm)',45,180],['thigh','Đùi (cm)',20,100],['arm','Bắp tay (cm)',10,70],['calf','Bắp chân (cm)',15,80],['chest','Ngực (cm)',40,150],['underbust','Chân ngực (cm)',35,150],['fat','Khối lượng mỡ (kg)',0,80],['muscle','Cơ xương SMM (kg)',0,65],['pbf','Tỷ lệ mỡ PBF (%)',0,70],['water','Nước cơ thể (L)',0,80]];
 return '<form id="measure-form" class="stack"><div class="notice">Ưu tiên số đo cùng thời điểm, không cần điền hết mỗi lần. Ngày gốc InBody 16/10 được giữ nguyên.</div><div class="formgrid"><div class="formitem"><label>Ngày đo</label><input name="date" type="date" class="field" value="'+escape(x.date||dateNow())+'" required></div>'+a.map(k=>'<div class="formitem"><label>'+k[1]+'</label><input class="field" name="'+k[0]+'" type="number" step=".1" min="'+k[2]+'" max="'+k[3]+'" value="'+escape(x[k[0]]??'')+'"></div>').join('')+'<div class="formitem"><label>Tình trạng chu kỳ / giữ nước (tùy chọn)</label><input class="field" maxlength="110" name="cycle" value="'+escape(x.cycle||'')+'" placeholder="Ví dụ: gần kỳ kinh"></div></div><div class="actions"><button class="btn primary" type="submit">Lưu số đo</button><button class="btn" type="button" data-close-modal>Hủy</button></div></form>'
 }
 function goalForm(){
@@ -215,7 +215,7 @@ modal('Đánh giá tuần '+selectedWeek,'<div class="stack"><h3>'+escape(D.WEEK
 }
 function captureMeasure(form){
 const a=Object.fromEntries(new FormData(form));if(a.date===BASE.date){toast('Mốc InBody gốc 16/10 được cố định; chọn ngày khác để cập nhật.');return}
-let rec={date:a.date};for(const k of ['weight','waist','navel','hip','thigh','arm','calf','chest','fat','muscle','pbf','water'])if(a[k]!==''&&a[k]!==undefined)rec[k]=+a[k];
+let rec={date:a.date};for(const k of ['weight','waist','navel','hip','thigh','arm','calf','chest','underbust','fat','muscle','pbf','water'])if(a[k]!==''&&a[k]!==undefined)rec[k]=+a[k];
 if(Object.keys(rec).length===1){toast('Hãy nhập ít nhất một chỉ số.');return}
 if(a.cycle)rec.cycle=String(a.cycle).slice(0,110);
 state.measurements=state.measurements.filter(x=>x.date!==rec.date);state.measurements.push(rec);save();closeModal();render();toast('Đã lưu số đo ngày '+rec.date)
@@ -248,6 +248,33 @@ restLeft=Math.max(15,Math.round(seconds||75));restTotal=restLeft;restPaused=fals
 restTimerId=setInterval(()=>{if(!restPaused){restLeft--;if(restLeft<=0){stopRest();toast('Đã hết thời gian nghỉ — tập tiếp khi sẵn sàng.')}else drawRest()}},1000)
 }
 
+function importMeasurements(file){
+if(!file)return;
+if(file.size>40000){toast('File số đo quá lớn, hãy dùng bản JSON đúng định dạng.');return}
+file.text().then(raw=>{
+const obj=JSON.parse(raw);
+if(obj.type!=='FIT55_MEASUREMENT'||obj.version!==1||!obj.measurement||typeof obj.measurement!=='object'||Array.isArray(obj.measurement))throw Error('Không đúng định dạng FIT55_MEASUREMENT');
+const measurement=obj.measurement,date=measurement.date;
+if(typeof date!=='string'||!/^\d{4}-\d{2}-\d{2}$/.test(date)||!Number.isFinite(Date.parse(date+'T12:00:00'))||date===BASE.date)throw Error('Ngày đo không hợp lệ hoặc trùng mốc gốc InBody');
+const ranges={weight:[30,180],chest:[40,150],underbust:[35,150],waist:[35,150],navel:[35,180],hip:[45,180],thigh:[20,100],arm:[10,70],calf:[15,80],fat:[0,80],muscle:[0,65],pbf:[0,70],water:[0,80]};
+let values={};
+for(const [key,[lo,hi]] of Object.entries(ranges)){
+if(measurement[key]===undefined||measurement[key]===null||measurement[key]==='')continue;
+let val=measurement[key];
+if(typeof val!=='number'||!Number.isFinite(val)||val<lo||val>hi)throw Error('Số đo '+key+' ngoài khoảng hợp lệ');
+values[key]=val;
+}
+if(!Object.keys(values).length)throw Error('Không có số đo hợp lệ');
+const existing=state.measurements.find(m=>m.date===date);
+const summary=Object.entries(values).map(([k,v])=>k+' '+v).join(' · ');
+if(!confirm('Nhập số đo ngày '+date+' vào FIT55 trên thiết bị này?\n'+summary+'\n'+(existing?'Chỉ cập nhật chỉ số có trong file; các chỉ số khác cùng ngày vẫn giữ.':'Lịch sử tập và dinh dưỡng không bị ảnh hưởng.')))return;
+const record={...(existing||{}),date,...values};
+if(typeof measurement.note==='string')record.note=measurement.note.slice(0,200);
+if(typeof measurement.cycle==='string')record.cycle=measurement.cycle.slice(0,110);
+state.measurements=state.measurements.filter(m=>m.date!==date);state.measurements.push(record);
+save();view('goals');toast('Đã nhập bộ số đo '+date+' vào thiết bị này.');
+}).catch(e=>toast('Không thể nhập số đo: '+String(e.message||e).slice(0,100)));
+}
 function dataImport(file){
 if(!file)return;
 file.text().then(raw=>{
@@ -298,6 +325,7 @@ if(e.target.id==='training-date'){trainingDate=e.target.value||dateNow();render(
 if(e.target.id==='nutrition-date'){nutritionDate=e.target.value||dateNow();render();return}
 if(e.target.id==='library-group'){detailMuscle=e.target.value;render();return}
 if(e.target.id==='meal-food'){const f=D.FOODS.find(x=>x.id===e.target.value);const form=e.target.closest('form');if(f){form.elements.kcal.disabled=true;form.elements.protein.disabled=true}else{form.elements.kcal.disabled=false;form.elements.protein.disabled=false}return}
+if(e.target.id==='measurement-import'){importMeasurements(e.target.files?.[0]);return}
 if(e.target.id==='data-import'){dataImport(e.target.files?.[0]);return}
 });
 document.addEventListener('input',e=>{
