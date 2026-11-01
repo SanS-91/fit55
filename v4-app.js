@@ -44,10 +44,11 @@ let section='today',selectedWeek=weekToday(),selectedDay=nextDay(),trainingDate=
 const NAV=[
 {id:'today',label:'Tổng quan',short:'Hôm nay',icon:'⌂'},
 {id:'training',label:'Lộ trình & buổi tập',short:'Tập luyện',icon:'▦'},
-{id:'library',label:'Thư viện kỹ thuật',short:'Bài tập',icon:'◈'},
-{id:'goals',label:'Mục tiêu & số đo',short:'Mục tiêu',icon:'◎'},
-{id:'nutrition',label:'Dinh dưỡng & sinh hoạt',short:'Dinh dưỡng',icon:'♧'}];
-const SECTION_TEXT={today:['My Body Journey','Hôm nay & kế hoạch'],training:['Training Plan','Lộ trình và buổi tập'],library:['Movement Library','Thư viện kỹ thuật'],goals:['Body Goals','Mục tiêu và số đo'],nutrition:['Nutrition & Lifestyle','Dinh dưỡng và sinh hoạt']};
+{id:'library',label:'Thư viện kỹ thuật',short:'Kỹ thuật',icon:'◈'},
+{id:'gallery',label:'Hình minh họa bài tập',short:'Hình tập',icon:'▧'},
+{id:'goals',label:'Mục tiêu & số đo',short:'Số đo',icon:'◎'},
+{id:'nutrition',label:'Dinh dưỡng & sinh hoạt',short:'Ăn uống',icon:'♧'}];
+const SECTION_TEXT={today:['My Body Journey','Hôm nay & kế hoạch'],training:['Training Plan','Lộ trình và buổi tập'],library:['Movement Library','Thư viện kỹ thuật'],gallery:['Exercise Visual Guide','Hình minh họa bài tập'],goals:['Body Goals','Mục tiêu và số đo'],nutrition:['Nutrition & Lifestyle','Dinh dưỡng và sinh hoạt']};
 function dayInLocal(s){return new Date(s+'T12:00:00')}
 function weekToday(){const start=dayInLocal(state.profile.startDate||defaultProfile.startDate);const d=dayInLocal(dateNow());return Math.max(1,Math.min(D.MAX_WEEKS||36,Math.floor((d-start)/604800000)+1))}
 function nextDay(){let day=new Date().getDay(),hour=new Date().getHours();let options=D.BASE.map((x,i)=>({i,gap:(x.day-day+7)%7}));let available=options.filter(x=>x.gap>0||hour<20);available.sort((a,b)=>a.gap-b.gap);return (available[0]||options[0]).i}
@@ -79,7 +80,7 @@ modal(e.name+' · '+e.vn,'<div class="exercise-detail stack"><div class="tags"><
 function card(title,inner,subtitle=''){return '<section class="card"><div class="paneltitle"><div><h3>'+title+'</h3>'+(subtitle?'<p class="meta">'+subtitle+'</p>':'')+'</div></div>'+inner+'</section>'}
 function heading(kicker,title,desc='',right=''){return '<div class="pageheader"><div><div class="micro">'+kicker+'</div><h2>'+title+'</h2>'+(desc?'<p>'+desc+'</p>':'')+'</div>'+right+'</div>'}
 function view(id){section=id;$('.crumb').textContent=SECTION_TEXT[id][0];$('.pagetitle').textContent=SECTION_TEXT[id][1];$$('[data-nav]').forEach(x=>{x.classList.toggle('active',x.dataset.nav===id);if(x.dataset.nav===id)x.setAttribute('aria-current','page');else x.removeAttribute('aria-current')});render();window.scrollTo({top:0,behavior:'instant'})}
-function render(){const v=$('#view');try{v.innerHTML={today:renderToday,training:renderTraining,library:renderLibrary,goals:renderGoals,nutrition:renderNutrition}[section]()}catch(e){console.error(e);v.innerHTML='<div class="notice red">Không thể tải phần này. Hãy thử làm mới trang hoặc khôi phục từ bản sao lưu.</div>'}}
+function render(){const v=$('#view');try{v.innerHTML={today:renderToday,training:renderTraining,library:renderLibrary,gallery:renderGallery,goals:renderGoals,nutrition:renderNutrition}[section]()}catch(e){console.error(e);v.innerHTML='<div class="notice red">Không thể tải phần này. Hãy thử làm mới trang hoặc khôi phục từ bản sao lưu.</div>'}}
 function renderLayout(){
 const n=$('#side-nav'),m=$('#mobilebar');
 n.innerHTML=NAV.map(x=>'<button type="button" class="navbtn" data-nav="'+x.id+'">'+icon(x.id)+' <span>'+x.label+'</span> ›</button>').join('')+'<div class="sidecaption" style="margin-top:24px">TIỆN ÍCH</div><button class="navbtn" data-open-data>↓ <span>Sao lưu & thiết lập</span> ›</button>';
@@ -176,6 +177,88 @@ function muscleDistribution(w){
 const m={};for(const [i,b] of w.exercises.entries()){let id=actualExercise(selectedWeek,selectedDay,i,b.id),e=D.EXERCISES[id];m[e.primary]=(m[e.primary]||0)+b.sets}
 let data=Object.entries(m).sort((a,b)=>b[1]-a[1]);let max=Math.max(1,...data.map(x=>x[1]));
 return data.map(([k,v])=>'<div class="barline"><span>'+escape(k)+'</span><div class="track"><span style="width:'+(100*v/max)+'%"></span></div><strong>'+v+'</strong></div>').join('')+'<p class="meta">Chỉ tính set nhóm cơ chính; nhóm cơ phụ vẫn được kích hoạt nhưng không cộng trùng toàn bộ set.</p>'
+}
+
+/* Gym illustration reference library: names and grouping follow user-supplied Gym.pdf;
+   images are openly licensed RepDB illustrations, not crops of the original PDF. */
+let gymScope='all',gymGroup='',gymKind='',gymSearch='';
+const G=window.FIT55_GYM_GALLERY||{GROUPS:[],ITEMS:[],BASE:'',LICENSE:'#'};
+const GYM_STORAGE='fit55-gym-bookmarks-v1';
+let gymBookmarks=(()=>{
+ try{const v=JSON.parse(localStorage.getItem(GYM_STORAGE)||'[]');return new Set(Array.isArray(v)?v:[])}
+ catch{return new Set()}
+})();
+const gymPlanIds=new Set(D.BASE.flatMap(x=>x.ids));
+const gymNormal=s=>String(s??'').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/đ/g,'d');
+function gymImages(item){
+ const pre=G.BASE+encodeURIComponent(item.slug);
+ const one=['plank','side-plank'].includes(item.slug);
+ return one?[[pre+'-main.webp','Giữ tư thế']]:[[pre+'-start.webp','Bắt đầu'],[pre+'-peak.webp','Kết thúc']];
+}
+function gymResults(){
+ const q=gymNormal(gymSearch.trim());
+ return G.ITEMS.filter(x=>{
+  if(gymScope==='plan'&&!gymPlanIds.has(x.fitId))return false;
+  if(gymScope==='pdf'&&x.page===0)return false;
+  if(gymScope==='saved'&&!gymBookmarks.has(x.key))return false;
+  if(gymGroup&&x.muscle!==gymGroup)return false;
+  if(gymKind&&x.kind!==gymKind)return false;
+  return !q||gymNormal([x.key,x.en,x.vi,x.muscle,x.kind].join(' ')).includes(q);
+ });
+}
+function gymCard(item){
+ const imgs=gymImages(item),saved=gymBookmarks.has(item.key);
+ return '<article class="gym-card">'+
+ '<button type="button" class="gym-card-open" data-gym-open="'+escape(item.key)+'" aria-label="Xem hình động tác '+escape(item.en)+'">'+
+ '<div class="gym-image-row">'+imgs.map(([url,label])=>'<figure class="gym-image-cell"><img loading="lazy" decoding="async" src="'+escape(url)+'" alt="'+escape(item.en)+' — '+escape(label)+'"><figcaption>'+label+'</figcaption></figure>').join('')+'</div>'+
+ '<div class="gym-card-text"><div class="gym-card-sub">'+escape(item.muscle)+' · '+escape(item.kind)+'</div>'+
+ '<h3>'+escape(item.en.replaceAll('-',' '))+'</h3><p>'+escape(item.vi)+'</p>'+
+ '<div class="gym-card-tags">'+(gymPlanIds.has(item.fitId)?'<span class="gym-tag gym-inplan">Trong lịch FIT55</span>':'')+
+ (item.page?'<span class="gym-tag">Mẫu trang '+item.page+'</span>':'<span class="gym-tag">FIT55 bổ sung</span>')+'</div></div></button>'+
+ '<button type="button" data-gym-fav="'+escape(item.key)+'" class="gym-favorite" title="'+(saved?'Bỏ lưu':'Lưu bài để tra cứu')+'" aria-label="'+(saved?'Bỏ lưu':'Lưu')+' bài '+escape(item.en)+'" aria-pressed="'+saved+'">'+(saved?'♥':'♡')+'</button>'+
+ '</article>';
+}
+function gymListHtml(arr){
+ if(!arr.length)return '<div class="notice">Không tìm thấy bài phù hợp. Hãy xóa từ tìm kiếm hoặc đổi nhóm cơ/bộ lọc.</div>';
+ return '<div class="gym-gallery-grid">'+arr.map(gymCard).join('')+'</div>';
+}
+function gymRefresh(){
+ if(section!=='gallery')return;
+ const arr=gymResults();
+ const target=$('#gym-results'),counter=$('#gym-count');
+ if(target)target.innerHTML=gymListHtml(arr);
+ if(counter)counter.textContent=arr.length+' bài phù hợp';
+}
+function renderGallery(){
+ const results=gymResults();
+ const modes=[['all','Tất cả'],['plan','Trong lịch FIT55'],['pdf','Theo mẫu PDF'],['saved','Đã lưu']];
+ const kinds=['Máy','Máy / cáp','Tạ tự do','Thể trọng'];
+ return '<div class="stack gym-page">'+
+ heading('VISUAL EXERCISE GUIDE','Hình minh họa bài tập','Tra cứu nhanh theo nhóm cơ và dụng cụ, xem tư thế bắt đầu – kết thúc. Danh mục dựa trên Gym.pdf bạn cung cấp.')+
+ '<div class="gym-summary"><div><strong>48</strong><span>Bài riêng biệt trong PDF</span></div><div><strong>7</strong><span>Bài bổ sung theo FIT55</span></div><div><strong>23/23</strong><span>Bài cốt lõi có hình tham khảo</span></div></div>'+
+ '<div class="card gym-filters">'+
+ '<div class="gym-mode-row">'+modes.map(([key,label])=>'<button type="button" class="gym-mode '+(gymScope===key?'active':'')+'" data-gym-scope="'+key+'" aria-pressed="'+(gymScope===key)+'">'+label+'</button>').join('')+'</div>'+
+ '<div class="gym-filter-grid"><label class="gym-filter-field"><span>Tìm động tác</span><input class="field" id="gym-search" type="search" autocomplete="off" placeholder="Hip thrust, lưng, đùi sau, cable..." value="'+escape(gymSearch)+'"></label>'+
+ '<label class="gym-filter-field"><span>Nhóm cơ</span><select class="field" id="gym-group"><option value="">Tất cả nhóm cơ</option>'+G.GROUPS.map(x=>'<option value="'+escape(x)+'" '+(gymGroup===x?'selected':'')+'>'+escape(x)+'</option>').join('')+'</select></label>'+
+ '<label class="gym-filter-field"><span>Dụng cụ</span><select class="field" id="gym-equipment"><option value="">Tất cả dụng cụ</option>'+kinds.map(x=>'<option value="'+escape(x)+'" '+(gymKind===x?'selected':'')+'>'+escape(x)+'</option>').join('')+'</select></label></div>'+
+ '<div class="gym-result-meta"><span id="gym-count" aria-live="polite">'+results.length+' bài phù hợp</span><span>Nhấn vào hình để phóng to và xem mô tả</span></div></div>'+
+ '<div id="gym-results">'+gymListHtml(results)+'</div>'+
+ '<p class="gym-source">Phân nhóm và danh sách bài: <b>Gym.pdf</b> (2 trang, tài liệu bạn gửi). Hình hiển thị là bộ minh họa động tác độc lập, <b>không phải ảnh cắt từ PDF gốc</b>. <a href="'+escape(G.LICENSE)+'" target="_blank" rel="noopener noreferrer">Exercise illustrations by RepDB</a> (mở, yêu cầu ghi nguồn). Một số biến thể máy/tạ được ghi chú rõ khi không trùng hoàn toàn.</p>'+
+ '</div>';
+}
+function gymShow(id){
+ const x=G.ITEMS.find(v=>v.key===id);if(!x)return;
+ const images=gymImages(x);
+ const ref=D.EXERCISES[x.fitId];
+ let detail=ref?'<div class="gym-detail-guide"><h3>Kỹ thuật theo thư viện FIT55</h3><p><b>Cơ chính:</b> '+escape(ref.primary)+'</p><p>'+escape(ref.setup)+'</p><ol>'+ref.steps.map(st=>'<li>'+escape(st)+'</li>').join('')+'</ol><p><b>Hít thở:</b> '+escape(ref.breath)+'</p><button type="button" class="btn primary" data-ex-open="'+escape(x.fitId)+'">Mở hướng dẫn đầy đủ →</button></div>':
+ '<div class="notice">Bài này nằm trong bộ mẫu tra cứu, chưa có trang kỹ thuật riêng của FIT55. Ảnh chỉ giúp nhận biết tư thế; hãy chỉnh máy và mức tạ phù hợp, tránh dùng ảnh thay cho hướng dẫn an toàn trực tiếp.</div>';
+ modal(x.en.replaceAll('-',' ')+' · '+x.vi,
+ '<div class="gym-detail stack"><div class="tags"><span class="pill rose">'+escape(x.muscle)+'</span><span class="pill">'+escape(x.kind)+'</span>'+
+ (gymPlanIds.has(x.fitId)?'<span class="pill mint">Trong lịch FIT55</span>':'')+'</div>'+
+ '<div class="gym-detail-images">'+images.map(([url,label])=>'<figure><img src="'+escape(url)+'" alt="'+escape(x.en)+' — '+escape(label)+'" loading="eager"><figcaption>'+label+'</figcaption></figure>').join('')+'</div>'+
+ (x.note?'<div class="notice amber"><b>Lưu ý hình minh họa:</b> '+escape(x.note)+'</div>':'')+
+ detail+
+ '<p class="gym-source">Danh mục theo '+(x.page?'Gym.pdf · Trang '+x.page:'chương trình FIT55 · bài bổ sung')+'. Hình minh họa: <a href="'+escape(G.LICENSE)+'" target="_blank" rel="noopener noreferrer">RepDB</a>. Đây là các tư thế tĩnh, không phải video hướng dẫn.</p></div>','',true);
 }
 function renderLibrary(){
 let es=Object.entries(D.EXERCISES).filter(([id,e])=>(!detailMuscle||e.primary===detailMuscle||e.secondary.includes(detailMuscle))&&(!detailFilter||(e.name+' '+e.vn+' '+e.primary+' '+e.secondary.join(' ')).toLowerCase().includes(detailFilter.toLowerCase())));
@@ -340,6 +423,15 @@ state.archive={workouts:obj.state.workouts,meals:obj.state.food||[]};state.measu
 }
 document.addEventListener('click',e=>{
 const n=e.target.closest('[data-nav]');if(n){view(n.dataset.nav);return}
+const scope=e.target.closest('[data-gym-scope]');if(scope){gymScope=scope.dataset.gymScope;render();return}
+const openGym=e.target.closest('[data-gym-open]');if(openGym){gymShow(openGym.dataset.gymOpen);return}
+const favorite=e.target.closest('[data-gym-fav]');if(favorite){
+ const id=favorite.dataset.gymFav;
+ if(gymBookmarks.has(id))gymBookmarks.delete(id);else gymBookmarks.add(id);
+ try{localStorage.setItem(GYM_STORAGE,JSON.stringify([...gymBookmarks]))}catch(err){}
+ gymRefresh();return
+}
+
 const ex=e.target.closest('[data-ex-open]');if(ex){const origin=e.target.closest('#view')?.querySelector('#training-date')!==null&&section==='training';let w=activeWorkout(),idx=w.exercises.findIndex((x,i)=>actualExercise(selectedWeek,selectedDay,i,x.id)===ex.dataset.exOpen);exDetail(ex.dataset.exOpen,origin,Math.max(0,idx));return}
 const rep=e.target.closest('[data-replace]');if(rep){const [w,d,i,id]=rep.dataset.replace.split('|');state.overrides[['P2',w,d,i].join('|')]=id;save();closeModal();render();toast('Đã thay bài cho đúng tuần & buổi');return}
 const restControl=e.target.closest('[data-rest-control]');
@@ -375,12 +467,15 @@ return;
 }
 if(e.target.id==='training-date'){trainingDate=e.target.value||dateNow();render();return}
 if(e.target.id==='nutrition-date'){nutritionDate=e.target.value||dateNow();render();return}
+if(e.target.id==='gym-group'){gymGroup=e.target.value;gymRefresh();return}
+if(e.target.id==='gym-equipment'){gymKind=e.target.value;gymRefresh();return}
 if(e.target.id==='library-group'){detailMuscle=e.target.value;render();return}
 if(e.target.id==='meal-food'){const f=D.FOODS.find(x=>x.id===e.target.value);const form=e.target.closest('form');if(f){form.elements.kcal.disabled=true;form.elements.protein.disabled=true}else{form.elements.kcal.disabled=false;form.elements.protein.disabled=false}return}
 if(e.target.id==='measurement-import'){importMeasurements(e.target.files?.[0]);return}
 if(e.target.id==='data-import'){dataImport(e.target.files?.[0]);return}
 });
 document.addEventListener('input',e=>{
+if(e.target.id==='gym-search'){gymSearch=e.target.value;gymRefresh();return}
 if(e.target.id==='library-search'){const pos=e.target.selectionStart;detailFilter=e.target.value;const list=e.target;const viewport=window.scrollY;render();const input=$('#library-search');input?.focus();input?.setSelectionRange(pos,pos);window.scrollTo(0,viewport)}
 });
 document.addEventListener('submit',e=>{
