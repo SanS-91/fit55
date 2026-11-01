@@ -142,3 +142,9 @@
  .atlas-pills span{font-size:10px;padding:3px 5px}
  .atlas-goal{font-size:12px}
 }
+
+/* Atlas 5.2.1 – primary/secondary muscle distinctions */
+.atlas-detail-stats{grid-template-columns:repeat(4,minmax(0,1fr))}
+.atlas-rep-note{margin-top:8px!important;color:#496d58!important;background:#f0f7f1;padding:8px 10px;border-radius:8px}
+.atlas-rep-note b{color:#2a6446}
+@media(max-width:680px){.atlas-detail-stats{grid-template-columns:repeat(2,minmax(0,1fr))}}
