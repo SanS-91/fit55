@@ -399,3 +399,13 @@ button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,su
  .gym-mode{font-size:11px}
  .gym-summary>div{min-height:98px}
 }
+
+
+/* Gallery network fallback */
+.gym-image-placeholder{
+ min-height:115px;aspect-ratio:1 / 1;
+ padding:16px;display:grid;place-items:center;text-align:center;
+ color:#705b6c;background:linear-gradient(130deg,#fcf2f8,#f6f4fb);
+ font-size:calc(11px + var(--fit-delta));line-height:1.55;font-weight:700
+}
+.gym-detail-images .gym-image-placeholder{min-height:235px}
