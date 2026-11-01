@@ -6,6 +6,8 @@ const A=g.FIT55_ATLAS_DATA,D=g.FIT55_DATA;
 if(!A||!D)return;
 const items=A.ITEMS, byKey=new Map(items.map(x=>[x.key,x]));
 const planIds=new Set(D.BASE.flatMap(x=>x.ids));
+const planPrimary=new Map();
+items.forEach(x=>{if(x.fitId&&planIds.has(x.fitId)&&!planPrimary.has(x.fitId))planPrimary.set(x.fitId,x.key)});
 const storageKey="fit55-gym-bookmarks-v1";
 let bookmarks=new Set();
 try{let a=JSON.parse(localStorage.getItem(storageKey)||"[]");if(Array.isArray(a))bookmarks=new Set(a)}catch(_){}
@@ -25,7 +27,7 @@ function pics(x){
  if(/(^|-)plank$|hollow-body-hold|dumbbell-farmers-walk/.test(x.slug)||["plank","side-plank"].includes(x.slug))return [[base+"-main.webp","Giữ tư thế"]];
  return [[base+"-start.webp","Tư thế bắt đầu"],[base+"-peak.webp","Tư thế kết thúc"]];
 }
-function planItem(x){return Boolean(x.fitId&&planIds.has(x.fitId))}
+function planItem(x){return Boolean(x.fitId&&planIds.has(x.fitId)&&planPrimary.get(x.fitId)===x.key)}
 function planDescription(x){
  if(!planItem(x))return"";
  const list=D.BASE.flatMap((day,di)=>day.ids.map((id,i)=>id===x.fitId?{di,i}:null).filter(Boolean));
