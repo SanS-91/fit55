@@ -49,15 +49,22 @@ Mốc 55 kg là **đích linh hoạt**, không có cam kết đạt ở tuần 2
 - Ưu tiên bài chính và thời gian nghỉ hợp lý. Bài thứ sáu có thể không tập khi hết 45 phút.
 - Theo dõi eo/rốn/mông/đùi/tay khoảng 2 tuần/lần, cân trung bình nhiều ngày; InBody trong điều kiện đo tương tự.
 
-## 5 khu vực web
+## 6 khu vực web
 
 1. **Tổng quan**: cân, mục tiêu, buổi tập tiếp theo, giờ ăn, check-in phục hồi.
 2. **Lộ trình & buổi tập**: chọn tuần W1–36, giai đoạn, từng buổi sáu bài, số set/RIR, nhật ký và đồng hồ nghỉ.
 3. **Thư viện kỹ thuật**: 39 bài với setup, từng bước, hít thở, nhóm cơ, mức tạ, lỗi và bài thay thế.
-4. **Mục tiêu & số đo**: cân, eo/rốn/mông/đùi/tay/ngực/chân ngực/bắp chân và InBody, biểu đồ/lịch sử.
-5. **Dinh dưỡng & sinh hoạt**: giờ ăn quanh buổi gym, nhật ký món, mục tiêu năng lượng và protein.
+4. **Hình minh họa bài tập (mới)**: 48 động tác khác nhau theo danh mục Gym.pdf, thêm 7 hình cho các bài trong lịch FIT55. Có hai tư thế bắt đầu/kết thúc, tra cứu nhóm cơ, dụng cụ, tìm kiếm, lọc bài trong lịch, yêu thích và phóng to xem kỹ thuật.
+5. **Mục tiêu & số đo**: cân, eo/rốn/mông/đùi/tay/ngực/chân ngực/bắp chân và InBody, biểu đồ/lịch sử.
+6. **Dinh dưỡng & sinh hoạt**: giờ ăn quanh buổi gym, nhật ký món, mục tiêu năng lượng và protein.
 
 Thiết kế responsive, nhãn màu pastel có độ tương phản rõ, nút Aa đổi cỡ chữ; bảng nhập set **thu gọn mặc định**.
+
+## Nguồn hình minh họa
+
+Danh mục và cách chia nhóm cơ/dụng cụ dựa trên hai trang **Gym.pdf do người dùng cung cấp**. Do PDF không đi kèm kho ảnh triển khai trên máy chủ, web dùng **ảnh minh họa động tác tương ứng do RepDB phát hành** để hiển thị hai tư thế. Đây **không phải ảnh cắt từ bản PDF gốc**; các biến thể máy không khớp hoàn toàn đều có ghi chú. Ở website có ghi nguồn và liên kết: **[Exercise data by RepDB (repdb.co)](https://repdb.co/)**; dữ liệu ảnh theo giấy phép mở có yêu cầu ghi nguồn. Các hình tải từ kho công khai RepDB trên GitHub; nếu nguồn bên ngoài gặp lỗi, web hiển thị placeholder thay vì ảnh bị vỡ.
+
+Bài yêu thích trong tab hình ảnh lưu riêng trong `fit55-gym-bookmarks-v1` của trình duyệt. Danh mục PDF gồm 49 hình/48 bài duy nhất do Romanian Deadlift lặp lại ở phần Compound. Bộ ảnh bổ sung gồm 7 bài thiếu hình để đủ tra cứu cả 23 bài cốt lõi hiện tại.
 
 ## Bảo toàn dữ liệu cũ
 
@@ -73,7 +80,8 @@ FIT55 hiện là trang tĩnh; nhật ký cá nhân chỉ lưu vào localStorage 
 
 - index.html: trang ứng dụng.
 - v4-data.js: thư viện 39 động tác, 4 ngày × 6 bài, lịch 36 tuần.
-- v4-app.js: giao diện, nhật ký, tương tác.
+- v4-app.js: giao diện, nhật ký, tương tác và tab hình minh họa.
+- v4-gym-gallery.js: danh sách 48+7 bài, nhóm cơ, dụng cụ, liên kết hình minh họa cấp phép mở.
 - v4.css: thiết kế responsive.
 - v4-readability.js: ba mức cỡ chữ.
 
