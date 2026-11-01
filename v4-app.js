@@ -495,6 +495,14 @@ if(v.calories<1200||v.calories>3500||v.protein<40||v.protein>220||v.carb<0||v.fa
 state.profile={...state.profile,...v};save();render();toast('Đã lưu khung giờ & dinh dưỡng');return;
 }
 });
+document.addEventListener('error',e=>{
+ const img=e.target;
+ if(!img||!img.matches||!img.matches('.gym-image-cell img,.gym-detail-images img'))return;
+ const fallback=document.createElement('div');
+ fallback.className='gym-image-placeholder';
+ fallback.textContent='Chưa tải được hình minh họa';
+ img.replaceWith(fallback);
+},true);
 document.addEventListener('keydown',e=>{if(e.key==='Escape'&&$('#modalroot').innerHTML)closeModal()});
 function boot(){
 renderLayout();view('today');
