@@ -130,10 +130,10 @@ function detail(key){
  const images=pics(x);
  const html='<div class="modalback" role="presentation"><div class="modal wide" role="dialog" aria-modal="true" aria-label="'+esc(x.en)+'"><div class="modalhead"><div><small class="atlas-modal-overline">'+esc(x.muscle)+' · '+esc(x.level)+'</small><h2>'+esc(x.en)+'</h2><p class="atlas-modal-vn">'+esc(x.vi)+'</p></div><button type="button" class="roundbtn" data-close-modal aria-label="Đóng">×</button></div><div class="modalbody atlas-detail">'+
  guide+'<div class="atlas-detail-visual">'+images.map(([url,label])=>'<figure><img loading="eager" decoding="async" src="'+esc(url)+'" alt="'+esc(x.en)+' — '+esc(label)+'" class="atlas-detail-photo"><figcaption>'+esc(label)+'</figcaption></figure>').join("")+'</div>'+
- '<div class="atlas-detail-stats"><span><b>Nhóm cơ</b>'+esc(x.muscle)+'</span><span><b>Dụng cụ</b>'+esc(x.kind)+'</span><span><b>Độ khó</b>'+esc(x.level)+'</span></div>'+
+ '<div class="atlas-detail-stats"><span><b>Nhóm cơ chính</b>'+esc(x.muscle)+'</span><span><b>Nhóm cơ hỗ trợ</b>'+esc((x.secondary||[]).slice(0,2).join(' · ')||'—')+'</span><span><b>Dụng cụ</b>'+esc(x.kind)+'</span><span><b>Độ khó</b>'+esc(x.level)+'</span></div>'+
  (planItem(x)?'<p class="atlas-plan-info"><b>Trong giáo án:</b> '+esc(planDescription(x))+'</p>':'')+
  '<section class="atlas-coaching"><h3>Tại sao tập bài này?</h3><p>'+esc(ref?.why||x.goal)+'</p></section>'+
- '<section class="atlas-coaching"><h3>Chuẩn bị đúng</h3><p>'+esc(setup)+'</p></section>'+
+ '<section class="atlas-coaching"><h3>Chuẩn bị đúng</h3><p>'+esc(setup)+'</p>'+(ref?.range?'<p class="atlas-rep-note"><b>Khoảng reps trong thư viện:</b> '+esc(ref.range)+' · số set theo đúng tuần đang tập.</p>':'')+'</section>'+
  '<section class="atlas-coaching"><h3>4 bước thực hiện</h3><ol>'+steps.map(p=>'<li>'+esc(p)+'</li>').join("")+'</ol></section>'+
  '<div class="atlas-guide-twocol"><section><h3>Nhịp thở</h3><p>'+esc(breathing)+'</p></section><section><h3>Lỗi thường gặp</h3><p>'+esc(errors)+'</p></section></div>'+
  '<div class="atlas-safety"><b>Lưu ý an toàn:</b> '+esc(safety)+'</div>'+
