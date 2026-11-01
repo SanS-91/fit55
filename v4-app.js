@@ -189,7 +189,7 @@ let gymBookmarks=(()=>{
  catch{return new Set()}
 })();
 const gymPlanIds=new Set(D.BASE.flatMap(x=>x.ids));
-const gymNormal=s=>String(s??'').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/đ/g,'d');
+const gymNormal=s=>String(s??'').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/đ/g,'d').replace(/[-_]+/g,' ').replace(/\s+/g,' ').trim();
 function gymImages(item){
  const pre=G.BASE+encodeURIComponent(item.slug);
  const one=['plank','side-plank'].includes(item.slug);
