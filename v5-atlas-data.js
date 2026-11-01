@@ -9,7 +9,16 @@ const base=old.map(x=>({...x,muscle:x.muscle==="Compound"?"Đùi trước":x.mus
  source:x.page?"Mẫu tham khảo":"Theo giáo án"}));
 const ITEMS=[...base,...EXTRA].map(x=>{
  let pattern=patternOf(x);
- return {...x,pattern,fitId:x.fitId||({"plank":"plank","close-grip-lat-pulldown":"neutral-pulldown","incline-bench-press":"incline-press"}[x.slug]||""), note:x.note||({"close-grip-lat-pulldown":"Ảnh tay nắm hẹp, góc cầm thực tế có thể khác tay trung tính.","incline-bench-press":"Ảnh minh họa biến thể tạ đòn; lịch FIT55 có thể dùng tạ đơn hoặc máy."}[x.slug]||""),
+ const linkedId=x.fitId||({"plank":"plank","close-grip-lat-pulldown":"neutral-pulldown","incline-bench-press":"incline-press"}[x.slug]||"");
+ const exercise=g.FIT55_DATA?.EXERCISES?.[linkedId];
+ const secondaryByGroup={
+  "Mông":["Đùi sau","Core"],"Đùi sau":["Mông","Core"],"Đùi trước":["Mông","Core"],
+  "Đùi trong":["Mông"],"Lưng":["Tay trước","Lưng giữa"],"Ngực":["Tay sau","Vai trước"],
+  "Vai trước":["Tay sau","Ngực"],"Vai giữa":["Vai trước"],"Vai sau":["Lưng trên"],
+  "Tay trước":["Cẳng tay"],"Tay sau":["Vai trước"],"Bắp chân":["Cơ dép"],"Core":["Mông","Cơ ổn định thân"]
+ };
+ const secondary=exercise?.secondary?.length?exercise.secondary:(secondaryByGroup[x.muscle]||[]);
+ return {...x,pattern,secondary,fitId:x.fitId||({"plank":"plank","close-grip-lat-pulldown":"neutral-pulldown","incline-bench-press":"incline-press"}[x.slug]||""), note:x.note||({"close-grip-lat-pulldown":"Ảnh tay nắm hẹp, góc cầm thực tế có thể khác tay trung tính.","incline-bench-press":"Ảnh minh họa biến thể tạ đòn; lịch FIT55 có thể dùng tạ đơn hoặc máy."}[x.slug]||""),
  steps:STEPS[pattern]||STEPS.core,
  breathing:BREATH[pattern]||BREATH.core,
  mistakes:ERROR[pattern]||ERROR.core,
