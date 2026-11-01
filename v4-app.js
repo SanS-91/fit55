@@ -59,7 +59,7 @@ function agoWeight(){return Math.max(0,63.3-latestWeight())}
 function progressPct(){return Math.max(0,Math.min(100,100*(63.3-latestWeight())/(63.3-state.profile.target||8.3)))}
 function activeWorkout(){return D.workoutOf(selectedWeek,selectedDay)}
 function weekStartNumber(n){let x=dayInLocal(state.profile.startDate);x.setDate(x.getDate()+(n-1)*7);return x.toLocaleDateString('vi-VN',{day:'2-digit',month:'2-digit',year:'numeric'})}
-function icon(name){const m={today:'⌂',training:'▦',library:'◈',goals:'◎',nutrition:'♧'};return m[name]||'✦'}
+function icon(name){const m={today:'⌂',training:'▦',library:'◈',gallery:'▧',goals:'◎',nutrition:'♧'};return m[name]||'✦'}
 function money(v){return Math.round(v).toLocaleString('vi-VN')}
 function showToastHtml(t){const el=$('#toast');el.textContent=t;el.classList.add('show');clearTimeout(showToastHtml.timer);showToastHtml.timer=setTimeout(()=>el.classList.remove('show'),2900)}
 function toast(t){showToastHtml(t)}
