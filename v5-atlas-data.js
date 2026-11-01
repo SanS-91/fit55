@@ -9,7 +9,7 @@ const base=old.map(x=>({...x,muscle:x.muscle==="Compound"?"Đùi trước":x.mus
  source:x.page?"Mẫu tham khảo":"Theo giáo án"}));
 const ITEMS=[...base,...EXTRA].map(x=>{
  let pattern=patternOf(x);
- return {...x,pattern,
+ return {...x,pattern,fitId:x.fitId||({"plank":"plank","close-grip-lat-pulldown":"neutral-pulldown","incline-bench-press":"incline-press"}[x.slug]||""), note:x.note||({"close-grip-lat-pulldown":"Ảnh tay nắm hẹp, góc cầm thực tế có thể khác tay trung tính.","incline-bench-press":"Ảnh minh họa biến thể tạ đòn; lịch FIT55 có thể dùng tạ đơn hoặc máy."}[x.slug]||""),
  steps:STEPS[pattern]||STEPS.core,
  breathing:BREATH[pattern]||BREATH.core,
  mistakes:ERROR[pattern]||ERROR.core,
